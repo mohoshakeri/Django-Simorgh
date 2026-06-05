@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-simorgh"
+version = "1.0.1"
+description = "A beautiful, modern, fully redesigned Django admin template with RTL support, theming, and offline assets."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Simorgh Contributors" }]
+keywords = ["django", "admin", "template", "theme", "rtl", "persian"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Django",
+    "Framework :: Django :: 4.0",
+    "Framework :: Django :: 4.1",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.0",
+    "Framework :: Django :: 5.1",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+requires-python = ">=3.10"
+dependencies = ["Django>=4.0"]
+
+[project.urls]
+Homepage = "https://github.com/mohoshakeri/django-simorgh"
+Repository = "https://github.com/mohoshakeri/django-simorgh"
+Issues = "https://github.com/mohoshakeri/django-simorgh/issues"
+
+[tool.setuptools.packages.find]
+include = ["django_simorgh*"]
+
+[tool.setuptools.package-data]
+django_simorgh = [
+    "templates/**/*.html",
+    "static/**/*",
+]
