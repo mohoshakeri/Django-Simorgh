@@ -1,0 +1,38 @@
+{% load i18n simorgh_admin %}
+
+<nav class="simorgh-nav">
+  <a class="simorgh-nav__home" href="{% url 'admin:index' %}">
+    <i class="fa-solid fa-house"></i>
+    <span>{% translate "Dashboard" %}</span>
+  </a>
+  {% if available_apps %}
+    {% for app in available_apps %}
+      <section class="simorgh-app is-open">
+        <button class="simorgh-app__button" type="button">
+          <span>
+            <i class="{{ app|simorgh_app_icon }}"></i>
+            {{ app.name }}
+          </span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="simorgh-models">
+          {% for model in app.models %}
+            {% if model.admin_url %}
+              <a href="{{ model.admin_url }}">
+                <i class="{{ model|simorgh_model_icon }}"></i>
+                <span>{{ model.name }}</span>
+              </a>
+            {% else %}
+              <span class="simorgh-models__disabled">
+                <i class="{{ model|simorgh_model_icon }}"></i>
+                <span>{{ model.name }}</span>
+              </span>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </section>
+    {% endfor %}
+  {% else %}
+    <p class="simorgh-empty">{% translate "You do not have permission to view or edit anything." %}</p>
+  {% endif %}
+</nav>

@@ -1,0 +1,47 @@
+{% extends "admin/base_site.html" %}
+{% load i18n simorgh_admin %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+  <div class="simorgh-dashboard">
+    {% if available_apps %}
+      <div class="simorgh-dashboard__grid">
+        {% for app in available_apps %}
+          <section class="simorgh-dashboard-app">
+            <header>
+              <i class="{{ app|simorgh_app_icon }}"></i>
+              <h2>{{ app.name }}</h2>
+            </header>
+            <div class="simorgh-dashboard-models">
+              {% for model in app.models %}
+                <div class="simorgh-dashboard-model">
+                  <div>
+                    <i class="{{ model|simorgh_model_icon }}"></i>
+                    {% if model.admin_url %}
+                      <a href="{{ model.admin_url }}">{{ model.name }}</a>
+                    {% else %}
+                      <span>{{ model.name }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="simorgh-dashboard-model__actions">
+                    {% if model.add_url %}
+                      <a href="{{ model.add_url }}" title="{% translate 'Add' %}"><i class="fa-solid fa-plus"></i></a>
+                    {% endif %}
+                    {% if model.admin_url %}
+                      <a href="{{ model.admin_url }}" title="{% translate 'Change' %}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </section>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>{% translate "You do not have permission to view or edit anything." %}</p>
+    {% endif %}
+  </div>
+{% endblock %}

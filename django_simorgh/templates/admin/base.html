@@ -1,0 +1,111 @@
+{% load i18n static simorgh_admin %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en-us' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" data-simorgh-color="{{ simorgh_theme_color|default:'green' }}" data-simorgh-mode="light" data-simorgh-sidebar="closed">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="NONE,NOARCHIVE">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="icon" href="{{ simorgh_favicon }}">
+  <link rel="stylesheet" href="{% static 'django_simorgh/fontawesome/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'django_simorgh/css/admin.css' %}">
+  {% block stylesheet %}{% endblock %}
+  {% block dark-mode-vars %}{% endblock %}
+  {% block extrastyle %}{% endblock %}
+  {% block extrahead %}{% endblock %}
+  {% block responsive %}{% endblock %}
+</head>
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+{% if not is_popup %}
+  <aside class="simorgh-sidebar" aria-label="{% translate 'Sidebar' %}">
+    <div class="simorgh-brand">
+      <a href="{% url 'admin:index' %}" class="simorgh-brand__link">
+        <img src="{{ simorgh_logo }}" alt="{% translate 'Django administration' %}">
+        <span>{% block branding %}{% translate 'Administration' %}{% endblock %}</span>
+      </a>
+      <button class="simorgh-icon-button simorgh-sidebar__close" type="button" data-simorgh-sidebar-toggle aria-label="{% translate 'Close' %}">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    {% include "admin/includes/simorgh_sidebar.html" %}
+  </aside>
+  <div class="simorgh-backdrop" data-simorgh-sidebar-toggle></div>
+{% endif %}
+
+<div class="simorgh-shell">
+  {% if not is_popup %}
+    <header class="simorgh-navbar">
+      <div class="simorgh-navbar__start">
+        <button class="simorgh-icon-button" type="button" data-simorgh-sidebar-toggle aria-label="{% translate 'Toggle navigation' %}">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+        {% block nav-global %}{% endblock %}
+      </div>
+      <div class="simorgh-navbar__end">
+        <button class="simorgh-button simorgh-button--ghost" type="button" data-simorgh-theme-toggle>
+          <i class="fa-solid fa-circle-half-stroke"></i>
+          <span data-simorgh-mode-label>Dark</span>
+        </button>
+        {% if user.is_active and user.is_staff %}
+          <details class="simorgh-profile">
+            <summary>
+              <span class="simorgh-profile__avatar">{{ user|simorgh_initials }}</span>
+              <span class="simorgh-profile__name">{% firstof user.get_short_name user.get_username %}</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <div class="simorgh-profile__menu">
+              {% url 'django-admindocs-docroot' as docsroot %}
+              {% if docsroot %}
+                <a href="{{ docsroot }}"><i class="fa-solid fa-book"></i>{% translate 'Documentation' %}</a>
+              {% endif %}
+              {% if user.has_usable_password %}
+                <a href="{% url 'admin:password_change' %}"><i class="fa-solid fa-key"></i>{% translate 'Change password' %}</a>
+              {% endif %}
+              <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+                {% csrf_token %}
+                <button type="submit"><i class="fa-solid fa-right-from-bracket"></i>{% translate 'Log out' %}</button>
+              </form>
+            </div>
+          </details>
+        {% endif %}
+      </div>
+    </header>
+  {% endif %}
+
+  <main class="simorgh-main">
+    {% block breadcrumbs %}
+      <nav class="simorgh-breadcrumbs" aria-label="{% translate 'Breadcrumbs' %}">
+        <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+        {% if title %}<span>{{ title }}</span>{% endif %}
+      </nav>
+    {% endblock %}
+
+    {% block messages %}
+      {% if messages %}
+        <ul class="messagelist">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endblock messages %}
+
+    <section class="simorgh-content">
+      {% block pretitle %}{% endblock %}
+      {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+      {% block object-tools %}{% endblock %}
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+      {% block sidebar %}{% endblock %}
+    </section>
+  </main>
+</div>
+
+{% block footer %}<footer id="footer"></footer>{% endblock %}
+<script src="{% static 'django_simorgh/js/admin.js' %}"></script>
+{% block extrabody %}{% endblock %}
+</body>
+</html>

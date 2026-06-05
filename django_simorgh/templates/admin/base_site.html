@@ -1,0 +1,8 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ simorgh_site_header|default:'Simorgh Admin' }}{% endblock %}
+
+{% block branding %}
+  {{ simorgh_site_header|default:'Simorgh Admin' }}
+{% endblock %}

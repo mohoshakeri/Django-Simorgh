@@ -1,0 +1,67 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  {{ media.css }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  {{ media.js }}
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-list{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+  <nav class="simorgh-breadcrumbs" aria-label="{% translate 'Breadcrumbs' %}">
+    <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+    <a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a>
+    <span>{{ cl.opts.verbose_name_plural|capfirst }}</span>
+  </nav>
+{% endblock %}
+{% endif %}
+
+{% block object-tools %}
+  <ul class="object-tools">
+    {% block object-tools-items %}
+      {% change_list_object_tools %}
+    {% endblock %}
+  </ul>
+{% endblock %}
+
+{% block content %}
+  <div id="content-main" class="simorgh-changelist">
+    {% block search %}{% search_form cl %}{% endblock %}
+    <form id="changelist-form" method="post"{% if cl.formset and cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} novalidate>
+      {% csrf_token %}
+      {% if cl.formset %}
+        <div>{{ cl.formset.management_form }}</div>
+      {% endif %}
+
+      {% block result_list %}
+        {% if action_form and actions_on_top and cl.show_admin_actions %}{% admin_actions %}{% endif %}
+        <div class="simorgh-table-wrap">
+          {% result_list cl %}
+        </div>
+        {% if action_form and actions_on_bottom and cl.show_admin_actions %}{% admin_actions %}{% endif %}
+      {% endblock %}
+      {% block pagination %}{% pagination cl %}{% endblock %}
+    </form>
+
+    {% block filters %}
+      {% if cl.has_filters %}
+        <aside id="changelist-filter" class="simorgh-filters-panel">
+          <h2><i class="fa-solid fa-sliders"></i>{% translate 'Filter' %}</h2>
+          {% if cl.has_active_filters %}
+            <h3 id="changelist-filter-clear">
+              <a href="{{ cl.clear_all_filters_qs }}">{% translate "Clear all filters" %}</a>
+            </h3>
+          {% endif %}
+          {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+        </aside>
+      {% endif %}
+    {% endblock %}
+  </div>
+{% endblock %}

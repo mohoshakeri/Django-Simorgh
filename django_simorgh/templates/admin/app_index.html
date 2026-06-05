@@ -1,0 +1,9 @@
+{% extends "admin/index.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+  <nav class="simorgh-breadcrumbs" aria-label="{% translate 'Breadcrumbs' %}">
+    <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+    <span>{{ app_list.0.name }}</span>
+  </nav>
+{% endblock %}
