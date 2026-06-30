@@ -1,0 +1,68 @@
+{% load i18n static simorgh_admin %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en-us' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" data-simorgh-color="{{ simorgh_theme_color|default:'green' }}" data-simorgh-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="NONE,NOARCHIVE">
+  <title>{{ title }} | {{ simorgh_site_header }}</title>
+  <link rel="icon" href="{{ simorgh_favicon }}">
+  <link rel="stylesheet" href="{% static 'django_simorgh/fontawesome/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'django_simorgh/css/admin.css' %}">
+</head>
+<body class="login">
+  <main class="simorgh-login">
+    <section class="simorgh-login__panel" aria-labelledby="simorgh-login-title">
+      <div class="simorgh-login__brand">
+        <img src="{{ simorgh_logo }}" alt="{% translate 'Django administration' %}">
+        <div>
+          <h1 id="simorgh-login-title">{{ simorgh_site_header }}</h1>
+          <p>{% translate "Sign in to continue" %}</p>
+        </div>
+      </div>
+
+      {% if form.errors and not form.non_field_errors %}
+        <p class="errornote">
+          {% blocktranslate count counter=form.errors.items|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktranslate %}
+        </p>
+      {% endif %}
+
+      {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+          <p class="errornote">{{ error }}</p>
+        {% endfor %}
+      {% endif %}
+
+      <form action="{{ app_path }}" method="post" id="login-form" novalidate>
+        {% csrf_token %}
+        <div class="form-row">
+          {{ form.username.errors }}
+          {{ form.username.label_tag }}
+          {{ form.username }}
+        </div>
+        <div class="form-row">
+          {{ form.password.errors }}
+          {{ form.password.label_tag }}
+          {{ form.password }}
+          <input type="hidden" name="next" value="{{ next }}">
+        </div>
+        {% url 'admin_password_reset' as password_reset_url %}
+        {% if password_reset_url %}
+          <div class="password-reset-link">
+            <a href="{{ password_reset_url }}">{% translate 'Forgotten your password or username?' %}</a>
+          </div>
+        {% endif %}
+        <div class="submit-row">
+          <button type="submit" class="simorgh-button">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            {% translate 'Log in' %}
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script src="{% static 'django_simorgh/js/admin.js' %}"></script>
+</body>
+</html>

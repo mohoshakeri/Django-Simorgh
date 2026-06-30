@@ -37,6 +37,7 @@
         var app = button.closest(".simorgh-app");
         if (app) {
           app.classList.toggle("is-open");
+          button.setAttribute("aria-expanded", app.classList.contains("is-open") ? "true" : "false");
         }
       });
     });
