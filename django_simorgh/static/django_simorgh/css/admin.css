@@ -41,6 +41,29 @@
   --simorgh-sidebar-width: 292px;
   --simorgh-radius: 8px;
   --simorgh-shadow: 0 18px 42px rgba(15, 23, 42, 0.14);
+  --primary: var(--simorgh-accent);
+  --secondary: var(--simorgh-accent-strong);
+  --accent: var(--simorgh-accent);
+  --primary-fg: var(--simorgh-accent-contrast);
+  --body-fg: var(--simorgh-text);
+  --body-bg: var(--simorgh-surface);
+  --body-quiet-color: var(--simorgh-muted);
+  --body-medium-color: var(--simorgh-text);
+  --border-color: var(--simorgh-border);
+  --hairline-color: var(--simorgh-border);
+  --darkened-bg: var(--simorgh-surface-2);
+  --selected-bg: var(--simorgh-accent-soft);
+  --selected-row: var(--simorgh-accent-muted);
+  --link-fg: var(--simorgh-accent);
+  --header-bg: var(--simorgh-accent);
+  --header-color: var(--simorgh-accent-contrast);
+  --header-link-color: var(--simorgh-accent-contrast);
+  --breadcrumbs-fg: var(--simorgh-accent-contrast);
+  --button-fg: var(--simorgh-accent-contrast);
+  --delete-button-bg: var(--simorgh-danger);
+  --delete-button-hover-bg: #b91c1c;
+  --close-button-bg: var(--simorgh-surface-2);
+  --close-button-hover-bg: var(--simorgh-surface-hover);
   color-scheme: light;
 }
 
