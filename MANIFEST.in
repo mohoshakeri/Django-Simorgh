@@ -2,3 +2,4 @@ include README.md
 include LICENSE
 recursive-include django_simorgh/templates *.html
 recursive-include django_simorgh/static *
+recursive-include django_simorgh/locale *.po *.mo

@@ -44,9 +44,9 @@
         {% block nav-global %}{% endblock %}
       </div>
       <div class="simorgh-navbar__end">
-        <button class="simorgh-button simorgh-button--ghost" type="button" data-simorgh-theme-toggle>
+        <button class="simorgh-button simorgh-button--ghost" type="button" data-simorgh-theme-toggle data-simorgh-dark-label="{% translate 'Dark' %}" data-simorgh-light-label="{% translate 'Light' %}">
           <i class="fa-solid fa-circle-half-stroke"></i>
-          <span data-simorgh-mode-label>Dark</span>
+          <span data-simorgh-mode-label>{% translate 'Dark' %}</span>
         </button>
         {% if user.is_active and user.is_staff %}
           <details class="simorgh-profile">

@@ -9,7 +9,10 @@
     root.dataset.simorghMode = nextMode;
     localStorage.setItem(storageKey, nextMode);
     document.querySelectorAll("[data-simorgh-mode-label]").forEach(function (node) {
-      node.textContent = nextMode === "dark" ? "Light" : "Dark";
+      var button = node.closest("[data-simorgh-theme-toggle]");
+      var darkLabel = button ? button.dataset.simorghDarkLabel : "Dark";
+      var lightLabel = button ? button.dataset.simorghLightLabel : "Light";
+      node.textContent = nextMode === "dark" ? lightLabel : darkLabel;
     });
   }
 

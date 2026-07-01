@@ -1,0 +1,119 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: django-simorgh 1.1.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 00:00+0000\n"
+"PO-Revision-Date: 2026-07-01 00:00+0000\n"
+"Last-Translator: Simorgh Contributors\n"
+"Language-Team: Persian\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Add"
+msgstr "افزودن"
+
+msgid "Administration"
+msgstr "مدیریت"
+
+msgid "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? All of the following related items will be deleted:"
+msgstr "آیا مطمئن هستید که می‌خواهید %(object_name)s «%(escaped_object)s» را حذف کنید؟ همه موارد مرتبط زیر حذف خواهند شد:"
+
+msgid "Breadcrumbs"
+msgstr "مسیر راهنما"
+
+msgid "Change"
+msgstr "تغییر"
+
+msgid "Change password"
+msgstr "تغییر گذرواژه"
+
+msgid "Clear all filters"
+msgstr "پاک کردن همه فیلترها"
+
+msgid "Close"
+msgstr "بستن"
+
+msgid "Dashboard"
+msgstr "پیشخوان"
+
+msgid "Dark"
+msgstr "تاریک"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Deleting the %(object_name)s '%(escaped_object)s' would require deleting the following protected related objects:"
+msgstr "حذف %(object_name)s «%(escaped_object)s» نیازمند حذف اشیای محافظت‌شده مرتبط زیر است:"
+
+msgid "Deleting the %(object_name)s '%(escaped_object)s' would result in deleting related objects, but your account does not have permission to delete the following types of objects:"
+msgstr "حذف %(object_name)s «%(escaped_object)s» باعث حذف اشیای مرتبط می‌شود، اما حساب شما اجازه حذف انواع اشیای زیر را ندارد:"
+
+msgid "Django administration"
+msgstr "مدیریت جنگو"
+
+msgid "Documentation"
+msgstr "مستندات"
+
+msgid "Filter"
+msgstr "فیلتر"
+
+msgid "Forgotten your password or username?"
+msgstr "گذرواژه یا نام کاربری خود را فراموش کرده‌اید؟"
+
+msgid "Home"
+msgstr "خانه"
+
+msgid "Light"
+msgstr "روشن"
+
+msgid "Log in"
+msgstr "ورود"
+
+msgid "Log out"
+msgstr "خروج"
+
+msgid "No, take me back"
+msgstr "خیر، بازگشت"
+
+msgid "Objects"
+msgstr "اشیا"
+
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "لطفاً خطاهای زیر را اصلاح کنید."
+
+msgid "Save"
+msgstr "ذخیره"
+
+msgid "Save and add another"
+msgstr "ذخیره و افزودن مورد دیگر"
+
+msgid "Save and continue editing"
+msgstr "ذخیره و ادامه ویرایش"
+
+msgid "Save and view"
+msgstr "ذخیره و مشاهده"
+
+msgid "Save as new"
+msgstr "ذخیره به عنوان جدید"
+
+msgid "Show all"
+msgstr "نمایش همه"
+
+msgid "Sidebar"
+msgstr "نوار کناری"
+
+msgid "Sign in to continue"
+msgstr "برای ادامه وارد شوید"
+
+msgid "Toggle navigation"
+msgstr "تغییر وضعیت ناوبری"
+
+msgid "Yes, I'm sure"
+msgstr "بله، مطمئنم"
+
+msgid "You do not have permission to view or edit anything."
+msgstr "شما اجازه مشاهده یا ویرایش چیزی را ندارید."
